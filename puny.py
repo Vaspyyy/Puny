@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
-import sys
+import sys ,termios ,tty ,atexit
+
+#def cleanp():
+    #TODO RESTORE TERMINAL SETTINGS HERE
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python puny.py <filename>")
-        sys.exit(1)
+    #TODO SAVE OLD TTY SETTINGS; SET RAW MODE; REGISTER CLEANUP
+    print("press q to quit", end="\r\n")
+    while True:
+        ch = sys.stdin.read(1)
+        if ch == "q":
+            break
+        #TODO PRINT WHATS TYPED WITHOUT ECHOING
 
-    filename = sys.argv[1]
-    try:
-        with open(filename, "r") as f:
-            content = f.read()
-        #TODO SPLIT INTO LINES FOR LATER
-        print(content, end="")
-    except FileNotFoundError:
-        print("File not found: {filename})")
-        sys.exit(1)
+
 if __name__ == "__main__":
     main()
